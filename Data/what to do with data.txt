@@ -1,0 +1,16 @@
+1. Deleting columns with lots of common data
+Tỉ lệ giá trị phổ biến (P), Trạng thái dữ liệu, Hành động đề xuất,Cơ sở lý thuyết (Bài 2)
+P > 99.5%, Gần như hằng số, Xóa (Drop), Lựa chọn tập con các thuộc tính (loại bỏ thuộc tính dư thừa).
+95% < P ≤ 99.5%, Mất cân bằng nặng, Trừu tượng hóa, Rời rạc hóa và trừu tượng khái niệm.
+80% < P ≤ 95%, Mất cân bằng nhẹ, Cân nhắc giữ/gộp, Chuẩn hóa và xây dựng thuộc tính.
+P ≤ 80%, Đa dạng/Cân bằng, Giữ nguyên, Giữ được ngữ nghĩa cốt lõi của dữ liệu.
+
+2. Whereever there is NA fill it with something else.
+if it's text then it's either 'None' or 'Other'
+if it's number then either average or median is fine.
+
+3. Normalization
+everything should be between 0 and 1 so that no column is biased
+
+4. Advanced
+consider dropping unnecessary column based on logic
