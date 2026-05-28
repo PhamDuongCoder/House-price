@@ -1,21 +1,21 @@
 ================================================================================
                     PHÂN CÔNG CÔNG VIỆC VIẾT BÁO CÁO
-                   Dự án: House Price Prediction
+                     Dự án: House Price Prediction 
 ================================================================================
 
 TỔNG QUAN DỰ ÁN:
-Repository này gồm 4 giai đoạn chính: tiền xử lý dữ liệu, huấn luyện mô hình, 
-dự đoán, và đánh giá kết quả. Tổng cộng có ~10 notebook xử lý dữ liệu và ~5 
+Repository này gồm 4 giai đoạn chính: tiền xử lý dữ liệu, huấn luyện mô hình,
+dự đoán, và đánh giá kết quả. Tổng cộng có ~10 notebook xử lý dữ liệu và ~5
 notebook huấn luyện mô hình.
 
 ================================================================================
 
 PHÂN CÔNG CHI TIẾT:
 
-1. ÁNH - Tiền xử lý và Khám phá dữ liệu
-   ────────────────────────────────────────────
+1. ÁNH - Tiền xử lý, Khám phá dữ liệu và So sánh tổng thể
+   ─────────────────────────────────────────────────────────
    Khối lượng: 33%
-   
+
    Nội dung cần viết:
    ├─ 1.1 Tổng quan dữ liệu (data_description.txt, train.csv, test.csv)
    │   - Số lượng mẫu, các cột, kiểu dữ liệu
@@ -31,20 +31,27 @@ PHÂN CÔNG CHI TIẾT:
    │   - Điền Alley, MasVnrType, MasVnrArea, v.v.
    │   - Kết quả sau khi điền
    │
-   └─ 1.4 Hình ảnh minh họa
+   ├─ 1.4 So sánh tổng thể các mô hình  ← CHUYỂN TỪ PHẦN CỦA LINH
+   │   - Bảng so sánh R², RMSE, MAE của tất cả các mô hình
+   │   - Mô hình tốt nhất và lý do
+   │   - Phân tích overfitting/underfitting tổng thể
+   │   - Khuyến nghị mô hình cho thực tế
+   │
+   └─ 1.5 Hình ảnh minh họa
        - Biểu đồ phân bố dữ liệu trước/sau xử lý
        - Biểu đồ missing values
+       - Biểu đồ so sánh R² giữa các mô hình
 
 ================================================================================
 
-2. LỢI - Feature Engineering và Feature Encoding
-   ───────────────────────────────────────────────────
-   Khối lượng: 33%
-   
+2. LỢI - Feature Engineering, Feature Encoding và Random Forest
+   ──────────────────────────────────────────────────────────────
+   Khối lượng: 34%
+
    Nội dung cần viết:
    ├─ 2.1 Quá trình Feature Engineering (Feature_Engineering.ipynb)
    │   - Các cột mới được tạo ra và cách tính toán
-   │   - Lý do tạo ra từng cột mới (độc lập với các cột khác)
+   │   - Lý do tạo ra từng cột mới
    │   - Kết quả tương quan giữa các cột mới với SalePrice
    │
    ├─ 2.2 Quá trình Feature Encoding (Feature_Encoding.ipynb)
@@ -56,67 +63,63 @@ PHÂN CÔNG CHI TIẾT:
    ├─ 2.3 Kết quả sau xử lý
    │   - Số lượng cột trước/sau (dimensionality)
    │   - Kiểu dữ liệu cuối cùng của dataset
-   │   - Thống kê Cleaned_Data.csv, Feature_Engineered_train.csv, 
+   │   - Thống kê Cleaned_Data.csv, Feature_Engineered_train.csv,
    │     Feature_Encoded_data.csv
    │
-   └─ 2.4 Hình ảnh minh họa
+   ├─ 2.4 Mô hình Random Forest  ← CHUYỂN TỪ PHẦN CỦA LINH
+   │   (training model random forest.ipynb)
+   │   - Hyperparameter tuning và Grid Search
+   │   - Best parameters tìm được
+   │   - Kết quả: MSE, R², MAE trên train/test set
+   │   - Overfitting analysis
+   │   - Top 10 most important features
+   │   - So sánh với XGBoost
+   │
+   └─ 2.5 Hình ảnh minh họa
        - Scatter plot GrLivArea vs SalePrice (chỉ ra outliers)
        - Scatter plot TotalBsmtSF vs SalePrice
        - Heatmap tương quan của các cột mới với SalePrice
+       - Biểu đồ feature importance của Random Forest
 
 ================================================================================
 
-3. LINH - Huấn luyện mô hình và Đánh giá
-   ────────────────────────────────────────────────
-   Khối lượng: 34%
-   
+3. LINH - Huấn luyện mô hình (Linear, Ridge, Lasso, XGBoost)
+   ─────────────────────────────────────────────────────────────
+   Khối lượng: 33%
+
    Nội dung cần viết:
    ├─ 3.1 Quá trình chia dataset (train-test split)
    │   - Tỷ lệ chia (80-20)
    │   - Random state và lý do
    │   - Chuẩn hóa dữ liệu (nếu có)
    │
-   ├─ 3.2 Các mô hình Linear được huấn luyện
+   ├─ 3.2 Các mô hình Linear
    │   - Linear Regression (training model linear.ipynb)
    │     * Hyperparameter
    │     * Scaling và lý do
    │     * Kết quả: MSE, R², MAE trên train/test set
-   │   
+   │
    │   - Ridge Regression (training model ridge.ipynb)
    │     * Alpha value và cách chọn
    │     * Kết quả: MSE, R², MAE trên train/test set
    │     * So sánh với Linear Regression
-   │   
+   │
    │   - Lasso Regression (training model lasso.ipynb)
    │     * Alpha value và cách chọn
    │     * Kết quả: MSE, R², MAE trên train/test set
    │     * So sánh với Ridge Regression
    │
-   ├─ 3.3 Mô hình Tree-based
-   │   - XGBoost (training model xgboost.ipynb)
-   │     * Hyperparameter tuning và Grid Search
-   │     * Best parameters tìm được
-   │     * Kết quả: MSE, R², MAE trên train/test set
-   │     * Overfitting analysis
-   │     * Top 10 most important features
+   ├─ 3.3 Mô hình XGBoost (training model xgboost.ipynb)
+   │   - Hyperparameter tuning và Grid Search
+   │   - Best parameters tìm được
+   │   - Kết quả: MSE, R², MAE trên train/test set
+   │   - Overfitting analysis
+   │   - Top 10 most important features
    │
-   │   - Random Forest (training model random forest.ipynb)
-   │     * Hyperparameter tuning và Grid Search
-   │     * Best parameters tìm được
-   │     * Kết quả: MSE, R², MAE trên train/test set
-   │     * Overfitting analysis
-   │     * Top 10 most important features
-   │
-   ├─ 3.4 So sánh tổng thể các mô hình
-   │   - Bảng so sánh R², RMSE, MAE
-   │   - Mô hình tốt nhất và lý do
-   │   - Analysis overfitting/underfitting
-   │   - Recommend mô hình cho production
-   │
-   └─ 3.5 Hình ảnh minh họa
-       - Biểu đồ so sánh R² giữa các mô hình
-       - Biểu đồ feature importance (XGBoost + Random Forest)
+   └─ 3.4 Hình ảnh minh họa
        - Biểu đồ predicted vs actual values
+       - Biểu đồ feature importance (XGBoost)
+       - Residual plot
 
 ================================================================================
 
@@ -129,20 +132,9 @@ HƯỚNG DẪN VIẾT BÁO CÁO:
 - Code snippet: Chỉ lấy các phần quan trọng
 - Kết luận: Tóm tắt lại từng phần của mình
 
-THỐNG KÊ CÔNG VIỆC:
-
-Ánh  : ~3 notebook (Cleaning data, fillna, đầu tiên của Feature Encoding)
-Lợi  : ~3 notebook (Feature Engineering, phần lớn Feature Encoding)
-Linh : ~4 notebook + 2 file CSV (Linear, Ridge, Lasso, XGBoost, Random Forest)
-
-Công việc được phân chia cân bằng dựa trên:
-- Độ phức tạp của từng phần
-- Số lượng notebook xử lý
-- Độ dài code và kết quả analysis
-
 ================================================================================
 
-Ngày phân công: 28/05/2026
+Ngày phân công: 28/05/2026 
 Deadline: 14/06/2026
 Người phân công: Dương
 
